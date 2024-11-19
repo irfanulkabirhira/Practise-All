@@ -1,0 +1,90 @@
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+import time
+
+options = Options()
+options.add_experimental_option(name="detach", value=True)
+driver = webdriver.Chrome(options=options)
+driver.get('https://prms.pythonanywhere.com/')
+driver.maximize_window()
+driver.find_element(By.ID, value="id_username").send_keys("rifat")
+driver.find_element(By.NAME, value="password").send_keys("rifat")
+
+driver.find_element(By.CLASS_NAME, value="text-white").click()
+
+time.sleep(5)
+driver.find_element(By.LINK_TEXT, value="Record Check NID").click()
+time.sleep(5)
+driver.find_element(By.NAME, value="search_query").send_keys("12345678")
+time.sleep(1)
+driver.find_element(By.CLASS_NAME, value="btn").click()
+time.sleep(5)
+driver.find_element(By.LINK_TEXT, value="Signout").click()
+time.sleep(5)
+
+driver.close()
+
+
+
+
+[[[ For CSS Selector ]]]
+
+
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+import time
+
+options = Options()
+options.add_experimental_option(name="detach", value=True)
+driver = webdriver.Chrome(options=options)
+driver.get('https://prms.pythonanywhere.com/')
+driver.maximize_window()
+# driver.find_element(By.ID, value="id_username").send_keys("rifat")
+driver.find_element("css selector", "#id_username").send_keys("rifat")
+# driver.find_element(By.NAME, value="password").send_keys("rifat")
+driver.find_element("css selector", "input[type='password']").send_keys("rifat")
+
+# driver.find_element(By.CLASS_NAME, value="text-white").click()
+driver.find_element("css selector", ".text-white").click()
+
+time.sleep(5)
+driver.find_element(By.LINK_TEXT, value="Record Check NID").click()
+time.sleep(5)
+driver.find_element(By.NAME, value="search_query").send_keys("12345678")
+time.sleep(1)
+driver.find_element(By.CLASS_NAME, value="btn").click()
+time.sleep(5)
+# driver.find_element(By.LINK_TEXT, value="Signout").click()
+anchors = driver.find_elements("css selector", "a")  # Find all button tags
+for anchor in anchors:
+    if anchor.text.strip().lower() == "Signout":  # Check for specific button text
+        anchor.click()
+        break
+time.sleep(5)
+
+driver.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
